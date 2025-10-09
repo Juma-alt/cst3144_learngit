@@ -1,129 +1,120 @@
 <html lang="en">
-  <head>
-    <title>After School Club</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-   <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <!-- The element where Vue will mount -->
-    <div id="app">
-      <header>
-        <h1 v-text="sitename"></h1>
-        <button v-on:click='showCheckout'>
-          {{cartItemCount}}
-          <span class="fas fa-cart-plus"></span>Checkout
-        </button>
-    
-
-      </header>
-      <main>
-       <div v-if="showProduct">
+<head>
+  <title>After School Club</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- The element where Vue will mount -->
+  <div id="app">
+    <header>
+      <h1 v-text="sitename"></h1>
+      <button v-on:click='showCheckout'>
+        {{cartItemCount}}
+        <span class="fas fa-cart-plus"></span>Checkout
+      </button>
+    </header>
+    <main>
+      <div v-if="showProduct">
         <figure>
           <img v-bind:src="product.image">
         </figure>
-            <h2 v-text="product.title"></h2>
-            <p v-html="product.description"></p>
-            <p>Price:{{product.price}}</p>
-      <button v-on:click="addToCart" v-if="canAddToCart">
-        Add to cart
-      </button>
-          <button disabled='disabled'v-else>
-        Add to cart </button></div>
-        <div v-else>
-
-          <h2>Checkout</h2>
-          <p>
-            <strong>First Name:</strong>
-            <!--This input field is bound to 'firstName'in the 'order'object-->
-            <input v-model="order.firstName"/>
-          </p>
-
-          <p>
-            <strong>Last Name:</strong>
-            <!--This input field is bound to 'lastName'in the 'order'object-->
-            <input v-model="order.lastName"/>
-          </p>
-          <h2>Order Information</h2>
-          <p>First Name: {{order.firstName}}</p>
-          <p>Last Name: {{order.lastName}}</p>
-
-          <p>
-            <strong>Address:</strong><input v-model="order.address"/>
-          </p>
+        <h2 v-text="product.title"></h2>
+        <p v-html="product.description"></p>
+        <p>Price:{{product.price}}</p>
+        <button v-on:click="addToCart" v-if="canAddToCart">Add to cart</button>
+        <button disabled='disabled' v-else>Add to cart</button>
+      </div>
+      <div v-else>
+        <h2>Checkout</h2>
         <p>
-          <strong>city:</strong> <input v-model="order.city"/>
+          <strong>First Name:</strong>
+          <!--This input field is bound to 'firstName' in the 'order' object-->
+          <input v-model="order.firstName"/>
         </p>
         <p>
-  <strong>State:</strong>
-  <select v-model="order.state">
-    <option disabled value="">State</option>
-    <option>Dubai</option>
-    <option>Sharjah</option>
-    <option>Ajman</option>
-    <option>Ras Al Khaimah</option>
-     <option>Abu Dhabi</option>
-      <option>Umm al Quwain</option>
-  </select>
-</p>
-<p>
-  <strong>Zip/Postal Code:</strong>
-  <input v-model="order.zip" />
-</p>
+          <strong>Last Name:</strong>
+          <!--This input field is bound to 'lastName' in the 'order' object-->
+          <input v-model="order.lastName"/>
+        </p>
+        <h2>Order Information</h2>
+        <p>First Name: {{order.firstName}}</p>
+        <p>Last Name: {{order.lastName}}</p>
+        <p>
+          <strong>Address:</strong><input v-model="order.address"/>
+        </p>
+        <p>
+          <strong>City:</strong>
+          <input v-model="order.city"/>
+        </p>
+        <p>
+          <strong>State:</strong>
+          <select v-model="order.state">
+            <option disabled value="">State</option>
+            <option>Dubai</option>
+            <option>Sharjah</option>
+            <option>Ajman</option>
+            <option>Ras Al Khaimah</option>
+            <option>Abu Dhabi</option>
+            <option>Umm al Quwain</option>
+          </select>
+        </p>
+        <p>
+          <strong>Zip/Postal Code:</strong>
+          <input v-model="order.zip" />
+        </p>
+        <h2>Order Information</h2>
+        <p>First Name: {{order.firstName}}</p>
+        <p>Last Name: {{order.lastName}}</p>
+        <p>Address: {{order.address}}</p>
+        <p>City: {{order.city}}</p>
+        <p>Zip: {{order.zip}}</p>
+        <p>State: {{order.state}}</p>
+      </div>
+    </main>
+  </div>
 
-<h2>Order Information</h2>
-<p>First Name: {{order.firstName}}</p>
-<p>Last Name: {{order.lastName}}</p>
-<p>Address: {{order.address}}</p>
-<p>City: {{order.city}}</p>
-<p>Zip: {{order.zip}}</p>
-<p>State: {{order.state}}</p>
-
-
-        </div>
-       
-      </main>
-    </div>
-    <script type="text/javascript">
-      var webstore = new Vue({
-        el: "#app",
-        data: {
-          sitename: "Pet Shop",
-          product: {
-            id: 1001,
-            title: "Cat",
-            description:"A 25 pound bag of <em>irresistible</em>"+"organic goodness of  your cat.",
-            price: 1000,
-            image: "images.jpeg",
-            availableInventory: 5
-          },
-          cart:[],
-          showProduct: true,
-          order: {
-            firstName: '',
-            lastName:'',
-            city:'',
-            zip:'',
-            state:'',
-          },
+  <script type="text/javascript">
+    var webstore = new Vue({
+      el: "#app",
+      data: {
+        sitename: "Pet Shop",
+        product: {
+          id: 1001,
+          title: "Cat",
+          description: "A 25 pound bag of <em>irresistible</em>" + "organic goodness of your cat.",
+          price: 1000,
+          image: "images.jpeg",
+          availableInventory: 5
         },
-        methods:{
-          showCheckout(){
-            this.showProduct=this.showProduct? false:true;
-          },
-          addToCart:function(){
-            this.cart.push(this.product.id);
-          }
+        cart: [],
+        showProduct: true,
+        order: {
+          firstName: '',
+          lastName: '',
+          city: '',
+          zip: '',
+          state: '',
         },
-        computed: {
-          cartItemCount:function(){
-            return this.cart.length||"";
-          },
-          canAddToCart:function(){
-            return this.product.availableInventory>this.cartItemCount;
-          }
+      },
+      methods: {
+        showCheckout() {
+          this.showProduct = this.showProduct ? false : true;
         },
-      });
-    </script>
-  </body>
+        addToCart: function() {
+          this.cart.push(this.product.id);
+        }
+      },
+      computed: {
+        cartItemCount: function() {
+          return this.cart.length || "";
+        },
+        canAddToCart: function() {
+          return this.product.availableInventory > this.cartItemCount;
+        }
+      },
+    });
+  </script>
+</body>
 </html>
